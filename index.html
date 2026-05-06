@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>flavr. — Cook what you have. Eat what you love.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=Epilogue:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #FAF6F0;
+      --cream2:  #F2EBDF;
+      --paper:   #FFFFFF;
+      --ink:     #2A2420;
+      --muted:   #6B5F55;
+      --rule:    #E8DFD3;
+      --rule2:   #D7CCB9;
+      --accent:  #C8633E;
+      --accent2: #A04A28;
+      --sage:    #7A8B6F;
+      --sage2:   #5C6B52;
+      --max:     1240px;
+      --px:      clamp(20px, 5vw, 80px);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Epilogue', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--px); }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .serif { font-family: 'Fraunces', serif; }
+    .mono  { font-family: 'JetBrains Mono', monospace; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 246, 240, 0.88);
+      backdrop-filter: blur(10px) saturate(140%);
+      -webkit-backdrop-filter: blur(10px) saturate(140%);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-inner {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+      height: 62px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--px);
+    }
+
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 20px;
+      border-radius: 999px;
+      font-family: 'Epilogue', sans-serif;
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.1s, box-shadow 0.15s, opacity 0.15s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-ghost {
+      border: 1.5px solid var(--rule2);
+      color: var(--ink);
+      background: transparent;
+    }
+    .btn-ghost:hover { border-color: var(--ink); }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      box-shadow: 0 2px 12px rgba(200, 99, 62, 0.28);
+    }
+    .btn-accent:hover { background: var(--accent2); box-shadow: 0 4px 20px rgba(200, 99, 62, 0.38); }
+
+    .btn-ink {
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      box-shadow: 0 2px 12px rgba(42, 36, 32, 0.2);
+    }
+    .btn-ink:hover { background: #1a1410; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: clamp(60px, 10vw, 120px) var(--px) clamp(60px, 8vw, 100px);
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .nav-links { display: none; }
+    }
+
+    .hero-eyebrow { margin-bottom: 20px; }
+
+    .hero-headline {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(52px, 7vw, 88px);
+      font-weight: 500;
+      line-height: 0.96;
+      letter-spacing: -0.027em;
+      margin-bottom: 24px;
+    }
+
+    .hero-headline .accent-line { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .hero-proof {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* iPhone mockup */
+    .hero-visual { position: relative; display: flex; justify-content: center; }
+
+    .iphone {
+      width: 280px;
+      background: #1A1A14;
+      border-radius: 40px;
+      padding: 16px 14px;
+      box-shadow:
+        0 0 0 1.5px #333,
+        0 40px 80px rgba(42, 36, 32, 0.35),
+        0 8px 24px rgba(42, 36, 32, 0.2);
+      position: relative;
+    }
+
+    .iphone-notch {
+      width: 80px;
+      height: 22px;
+      background: #1A1A14;
+      border-radius: 0 0 16px 16px;
+      margin: 0 auto 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .iphone-screen {
+      background: #FAFAF6;
+      border-radius: 28px;
+      overflow: hidden;
+      aspect-ratio: 9/19;
+    }
+
+    .iphone-content {
+      padding: 16px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .iphone-logo {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: #B84A1E;
+      font-weight: 600;
+    }
+
+    .iphone-greeting {
+      font-size: 11px;
+      color: #888;
+    }
+
+    .iphone-question {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 20px;
+      font-weight: 500;
+      color: #1A1A14;
+      line-height: 1.1;
+    }
+    .iphone-question span { color: #B84A1E; }
+
+    .iphone-chip-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .iphone-chip {
+      background: #EEF4E6;
+      color: #244A0D;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .iphone-cta {
+      background: #B84A1E;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 11px;
+      font-size: 12px;
+      font-weight: 500;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    /* Floating recipe card */
+    .floating-card {
+      position: absolute;
+      bottom: -20px;
+      right: -36px;
+      width: 220px;
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid var(--rule);
+      padding: 14px;
+      box-shadow:
+        0 8px 32px rgba(42, 36, 32, 0.12),
+        0 2px 8px rgba(42, 36, 32, 0.06);
+    }
+
+    .fc-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .fc-title {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .fc-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* ── PRESS STRIP ── */
+    .press {
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      background: var(--cream);
+      padding: 20px var(--px);
+    }
+
+    .press-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .press-names {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .press-name {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 400;
+      opacity: 0.7;
+    }
+
+    /* ── SHOP SECTION ── */
+    .section {
+      padding: clamp(60px, 8vw, 100px) var(--px);
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: clamp(40px, 5vw, 60px);
+    }
+
+    .section-eyebrow { margin-bottom: 14px; }
+
+    .section-headline {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(40px, 5.5vw, 68px);
+      font-weight: 500;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 600px;
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    /* Guide cards */
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .guides-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .guides-grid { grid-template-columns: 1fr; }
+    }
+
+    .guide-card {
+      background: var(--paper);
+      border-radius: 16px;
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .guide-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(42, 36, 32, 0.1);
+    }
+
+    .guide-cover {
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+
+    .guide-cover-sienna { background: linear-gradient(145deg, #F2E0D4 0%, #D4855E 60%, #B85A38 100%); }
+    .guide-cover-sage   { background: linear-gradient(145deg, #E4EDE0 0%, #8BA87A 60%, #5C7A52 100%); }
+    .guide-cover-terra  { background: linear-gradient(145deg, #F0E6D4 0%, #C89A6A 60%, #A06840 100%); }
+
+    .guide-cover-stripe {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(255,255,255,0.04) 0px,
+        rgba(255,255,255,0.04) 1px,
+        transparent 1px,
+        transparent 8px
+      );
+    }
+
+    .guide-cover-title {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 20px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.15;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .guide-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .guide-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    .guide-title {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .guide-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .guide-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .guide-price {
+      font-family: 'Fraunces', serif;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    /* Bundle card */
+    .bundle-card {
+      background: var(--ink);
+      border-radius: 20px;
+      padding: clamp(28px, 4vw, 48px);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
+      .bundle-card { grid-template-columns: 1fr; }
+    }
+
+    .bundle-save-badge {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    .bundle-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: rgba(250, 246, 240, 0.5);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .bundle-headline {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .bundle-desc {
+      font-size: 15px;
+      color: rgba(250, 246, 240, 0.6);
+      max-width: 540px;
+      line-height: 1.55;
+    }
+
+    .bundle-price-block {
+      text-align: right;
+    }
+
+    .bundle-price-new {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 64px;
+      font-weight: 500;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .bundle-price-old {
+      font-size: 14px;
+      color: rgba(250, 246, 240, 0.4);
+      text-decoration: line-through;
+      margin-bottom: 20px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section {
+      background: var(--cream);
+      padding: clamp(60px, 8vw, 100px) var(--px);
+      border-top: 1px solid var(--rule);
+    }
+
+    .testimonials-header {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .rating-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 8px 16px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .testimonials-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+
+    .testimonial-card {
+      padding: 32px;
+      border-right: 1px solid var(--rule);
+      background: var(--cream2);
+    }
+    .testimonial-card:last-child { border-right: none; }
+
+    .testimonial-quote-mark {
+      font-family: 'Fraunces', serif;
+      font-size: 80px;
+      line-height: 0.8;
+      color: var(--accent);
+      opacity: 0.5;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-body {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.45;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── ABOUT ── */
+    .about-section {
+      background: var(--cream2);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: clamp(60px, 8vw, 100px) var(--px);
+    }
+
+    .about-inner {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .about-headline {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+    }
+
+    .about-body {
+      column-count: 2;
+      column-gap: 40px;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    @media (max-width: 640px) { .about-body { column-count: 1; } }
+
+    .about-body p { margin-bottom: 1.2em; }
+
+    .about-body p:first-child::first-letter {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 76px;
+      font-weight: 500;
+      color: var(--accent);
+      float: left;
+      line-height: 0.8;
+      margin-right: 8px;
+      margin-top: 6px;
+    }
+
+    .founder-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 36px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 14px 20px;
+    }
+
+    .founder-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .founder-name {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .founder-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* ── EMAIL CAPTURE ── */
+    .email-section {
+      background: var(--ink);
+      padding: clamp(60px, 8vw, 100px) var(--px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .email-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .email-inner { grid-template-columns: 1fr; }
+      .email-side { display: none; }
+    }
+
+    .email-side {
+      aspect-ratio: 3/4;
+      border-radius: 12px;
+      overflow: hidden;
+      opacity: 0.35;
+    }
+
+    .email-side-img {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, var(--accent), var(--sage));
+      position: relative;
+    }
+    .email-side-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(255,255,255,0.05) 0px,
+        rgba(255,255,255,0.05) 1px,
+        transparent 1px,
+        transparent 8px
+      );
+    }
+
+    .email-content {
+      text-align: center;
+    }
+
+    .email-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: rgba(250,246,240,0.4);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .email-headline {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(36px, 5vw, 68px);
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .email-sub {
+      font-size: 16px;
+      color: rgba(250,246,240,0.6);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .email-form {
+      display: flex;
+      gap: 8px;
+      max-width: 420px;
+      margin: 0 auto 14px;
+    }
+
+    @media (max-width: 480px) { .email-form { flex-direction: column; } }
+
+    .email-input {
+      flex: 1;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.08);
+      color: var(--cream);
+      font-family: 'Epilogue', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .email-input::placeholder { color: rgba(250,246,240,0.35); }
+    .email-input:focus { border-color: rgba(255,255,255,0.4); }
+
+    .email-note {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(250,246,240,0.35);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      padding: clamp(60px, 8vw, 100px) var(--px);
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .faq-section { grid-template-columns: 1fr; gap: 40px; }
+      .faq-sticky { position: static !important; }
+    }
+
+    .faq-sticky {
+      position: sticky;
+      top: 80px;
+    }
+
+    .faq-headline {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(36px, 3.5vw, 56px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .faq-contact {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .faq-contact a { color: var(--accent); text-decoration: none; }
+    .faq-contact a:hover { text-decoration: underline; }
+
+    .faq-list { display: flex; flex-direction: column; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .faq-trigger {
+      display: grid;
+      grid-template-columns: 36px 1fr 24px;
+      gap: 12px;
+      align-items: center;
+      padding: 20px 0;
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+
+    .faq-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    .faq-question {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .faq-toggle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid var(--rule2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--muted);
+      transition: transform 0.2s, background 0.15s;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg);
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .faq-item.open .faq-question { font-style: italic; }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.2s ease;
+      font-size: 15.5px;
+      color: var(--muted);
+      line-height: 1.65;
+      padding-left: 48px;
+      padding-right: 36px;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 400px;
+      padding-bottom: 20px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--cream2);
+      border-top: 1px solid var(--rule);
+      padding: clamp(48px, 6vw, 72px) var(--px) 32px;
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    .footer-logo {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .footer-tagline {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      max-width: 260px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      text-decoration: none;
+      transition: border-color 0.15s, transform 0.1s;
+    }
+    .footer-social:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    .footer-col-heading {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--rule);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">flavr.</a>
+      <ul class="nav-links">
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="https://app.getflavr.com" class="btn btn-ghost">Sign in</a>
+        <a href="https://app.getflavr.com" class="btn btn-accent">Open the app →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section>
+    <div class="hero">
+      <!-- Text col -->
+      <div class="hero-left">
+        <p class="eyebrow hero-eyebrow">AI-powered recipe generation</p>
+        <h1 class="hero-headline">
+          Cook what<br>you have.<br>
+          <span class="accent-line">Eat what<br>you love.</span>
+        </h1>
+        <p class="hero-sub">flavr. turns the ingredients already in your kitchen into recipes built around your goals, your tastes, and your culture. No more staring at the fridge.</p>
+        <div class="hero-ctas">
+          <a href="https://app.getflavr.com" class="btn btn-accent" style="font-size:15px;padding:13px 28px;">Try the app — free</a>
+          <a href="#shop" class="btn btn-ghost" style="font-size:15px;padding:13px 28px;">Shop guides</a>
+        </div>
+        <p class="hero-proof">Loved by 100+ home cooks · No ads. No algorithms.</p>
+      </div>
+
+      <!-- Visual col -->
+      <div class="hero-visual">
+        <div class="iphone">
+          <div class="iphone-notch"></div>
+          <div class="iphone-screen">
+            <div class="iphone-content">
+              <div class="iphone-logo">flavr.</div>
+              <div class="iphone-greeting">Good evening, Gerald.</div>
+              <div class="iphone-question">What's in your <span>kitchen?</span></div>
+              <div class="iphone-chip-wrap">
+                <span class="iphone-chip">Eggs ×</span>
+                <span class="iphone-chip">Spinach ×</span>
+                <span class="iphone-chip">Tomatoes ×</span>
+                <span class="iphone-chip">Cheddar ×</span>
+                <span class="iphone-chip" style="background:#EEF4E6;color:#244A0D;border:1px dashed rgba(0,0,0,0.15);">+ add</span>
+              </div>
+              <div style="margin-top:auto;">
+                <div class="iphone-cta">Generate my recipe →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-card">
+          <div class="fc-eyebrow">Generated for you</div>
+          <div class="fc-title">Charred lemon orzo with what's wilting in the crisper</div>
+          <div class="fc-meta">22 min · 520 kcal · 34g protein</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESS STRIP -->
+  <section class="press">
+    <div class="press-inner">
+      <span class="eyebrow" style="white-space:nowrap;opacity:0.6;">As seen in</span>
+      <div class="press-names">
+        <span class="press-name">Bon Appétit</span>
+        <span class="press-name">Food52</span>
+        <span class="press-name">Eater</span>
+        <span class="press-name">The Guardian</span>
+        <span class="press-name">Wired</span>
+        <span class="press-name">Dezeen</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP SECTION -->
+  <section id="shop">
+    <div class="section">
+      <div class="section-header">
+        <p class="eyebrow section-eyebrow">02 · The shop</p>
+        <h2 class="section-headline">Cooking guides, made with intention.</h2>
+        <p class="section-desc">Each guide is tightly-edited, kitchen-tested, and designed to sit open on your counter — no fluff, just recipes that work.</p>
+      </div>
+
+      <div class="guides-grid">
+
+        <!-- Guide 1: High Protein -->
+        <div class="guide-card">
+          <div class="guide-cover guide-cover-sienna">
+            <div class="guide-cover-stripe"></div>
+            <div class="guide-cover-title">30 High Protein Dinners</div>
+          </div>
+          <div class="guide-body">
+            <div class="guide-meta">01 · Guide &nbsp;·&nbsp; Fitness</div>
+            <div class="guide-title">30 High Protein Dinners</div>
+            <p class="guide-desc">Real meals with 30–50g protein. No shakes, no boring food — just dinners that actually taste good and hit your macros.</p>
+            <div class="guide-footer">
+              <div class="guide-price">£12.99</div>
+              <a href="https://flavr-9927.myshopify.com/products/30-high-protein-dinners-real-meals-with-30-50g-protein-no-shakes-no-boring-food" class="btn btn-ink" style="font-size:13px;padding:9px 20px;" target="_blank" rel="noopener">Add to basket</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 2: Mediterranean Reset -->
+        <div class="guide-card">
+          <div class="guide-cover guide-cover-sage">
+            <div class="guide-cover-stripe"></div>
+            <div class="guide-cover-title">The Mediterranean Reset</div>
+          </div>
+          <div class="guide-body">
+            <div class="guide-meta">02 · Guide &nbsp;·&nbsp; Health</div>
+            <div class="guide-title">The Mediterranean Reset</div>
+            <p class="guide-desc">A 14-day modern meal plan for energy, health, and balance. Rooted in Mediterranean tradition, adapted for real life.</p>
+            <div class="guide-footer">
+              <div class="guide-price">£12.99</div>
+              <a href="https://flavr-9927.myshopify.com/products/the-mediterranean-reset-a-14-day-modern-meal-plan-for-energy-health-balance?variant=57985737490819" class="btn btn-ink" style="font-size:13px;padding:9px 20px;" target="_blank" rel="noopener">Add to basket</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide 3: Weeknight Vegan -->
+        <div class="guide-card">
+          <div class="guide-cover guide-cover-terra">
+            <div class="guide-cover-stripe"></div>
+            <div class="guide-cover-title">Weeknight Vegan</div>
+          </div>
+          <div class="guide-body">
+            <div class="guide-meta">03 · Guide &nbsp;·&nbsp; Plant-based</div>
+            <div class="guide-title">Weeknight Vegan</div>
+            <p class="guide-desc">36 fast plant-based dinners ready in 22 minutes or less. Proof that vegan cooking doesn't have to be slow or complicated.</p>
+            <div class="guide-footer">
+              <div class="guide-price">£12.99</div>
+              <a href="https://flavr-9927.myshopify.com/products/weeknight-vegan-36-fast-plant-based-dinners-ready-in-22-minutes-or-less?variant=57985732673923" class="btn btn-ink" style="font-size:13px;padding:9px 20px;" target="_blank" rel="noopener">Add to basket</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bundle card -->
+      <div class="bundle-card">
+        <div class="bundle-save-badge">Save £10</div>
+        <div class="bundle-left">
+          <div class="bundle-eyebrow">04 · The bundle</div>
+          <div class="bundle-headline">The Flavr Ultimate Bundle.<br>Every guide we've published.</div>
+          <p class="bundle-desc">Three cookbooks covering high-protein cooking, the Mediterranean reset, and weeknight plant-based meals — everything you need for everyday cooking, health, and performance.</p>
+        </div>
+        <div class="bundle-price-block">
+          <div class="bundle-price-new">£29</div>
+          <div class="bundle-price-old">was £39</div>
+          <a href="https://flavr-9927.myshopify.com/products/the-flavr-ultimate-bundle-3-cookbooks-for-everyday-cooking-health-performance?variant=57985769996675" class="btn btn-accent" style="font-size:14px;padding:12px 28px;" target="_blank" rel="noopener">Get the bundle →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="testimonials-header wrap">
+      <div>
+        <p class="eyebrow" style="margin-bottom:14px;">03 · Loved by</p>
+        <h2 class="section-headline" style="max-width:600px;">People who actually cook.<br><em>Often. Loudly.</em></h2>
+      </div>
+      <div class="rating-badge">4.8 ★ · 1,240 reviews</div>
+    </div>
+    <div class="wrap">
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-quote-mark">"</div>
+          <p class="testimonial-body">I used to throw out half my fridge every week. Now I actually cook what I buy. flavr. has genuinely changed the way I think about dinner.</p>
+          <div class="testimonial-author">Amara O. · Lagos, Nigeria</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote-mark">"</div>
+          <p class="testimonial-body">The high protein guide is incredible — proper food, not bro-science. My girlfriend steals it every Sunday for meal prep.</p>
+          <div class="testimonial-author">Marcus T. · London, UK</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote-mark">"</div>
+          <p class="testimonial-body">Finally an app that speaks my language — not just recipes but understanding what I actually keep in my kitchen. The Swahili support is a nice touch too.</p>
+          <div class="testimonial-author">Zawadi M. · Nairobi, Kenya</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <p class="eyebrow" style="margin-bottom:14px;">04 · Why flavr.</p>
+      <h2 class="about-headline">We built it because every other recipe app forgot the cook.</h2>
+      <div class="about-body">
+        <p>We didn't build flavr. to compete with recipe blogs. We built it because every Monday night, millions of people open the fridge, stare at half an onion, some wilting spinach, and last week's chicken — and still end up ordering takeaway. Not because they can't cook. Because no tool was actually helping them.</p>
+        <p>flavr. is the kitchen brain you never had. It sees your ingredients, knows your goals, and builds something real — tuned to your culture, your macros, and the time you actually have. No subscriptions to recipe services you never use. No shopping lists for things your local shop doesn't stock. Just your kitchen, your goals, your food.</p>
+      </div>
+      <div class="founder-card">
+        <div class="founder-avatar">GB</div>
+        <div>
+          <div class="founder-name">Gerald Bonsu</div>
+          <div class="founder-role">Founder, flavr.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL CAPTURE -->
+  <section class="email-section">
+    <div class="email-inner wrap">
+      <div class="email-side">
+        <div class="email-side-img"></div>
+      </div>
+
+      <div class="email-content">
+        <p class="email-eyebrow">05 · The drop</p>
+        <h2 class="email-headline">Get the<br>recipe drop.</h2>
+        <p class="email-sub">One email a week. New recipes, behind-the-scenes, early access to new guides.</p>
+        <form class="email-form" onsubmit="handleSubscribe(event)">
+          <input class="email-input" type="email" id="emailInput" placeholder="your@email.com" required />
+          <button type="submit" class="btn btn-accent" style="white-space:nowrap;">Subscribe</button>
+        </form>
+        <p class="email-note" id="emailStatus">No spam. Unsubscribe anytime.</p>
+      </div>
+
+      <div class="email-side">
+        <div class="email-side-img" style="background:linear-gradient(160deg,var(--sage),var(--ink));"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="faq-section">
+      <div class="faq-sticky">
+        <p class="eyebrow" style="margin-bottom:14px;">06 · Help</p>
+        <h2 class="faq-headline">Questions, answered.</h2>
+        <p class="faq-contact" style="margin-top:16px;">Couldn't find what you needed? Drop us a line at <a href="mailto:getflavr@gmail.com">getflavr@gmail.com</a></p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span class="faq-num">01</span>
+            <span class="faq-question">What is flavr. and how does it work?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">flavr. is an AI-powered recipe app that generates personalised recipes from the ingredients you already have at home. You type, snap, or speak your ingredients — flavr. builds a recipe tuned to your health goals, dietary preferences, and the time you have available.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span class="faq-num">02</span>
+            <span class="faq-question">How are the PDF guides different from the app?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">The app generates new recipes on demand from your ingredients. The PDF guides are curated, kitchen-tested cookbooks — fixed collections of our best recipes around a specific theme (high protein, Mediterranean, plant-based). They're designed to be printed or kept on your phone for offline use.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span class="faq-num">03</span>
+            <span class="faq-question">Do I need the app to use the guides?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">No — the PDF guides are completely standalone. You download them once and keep them forever. No account required, no internet connection needed when cooking.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span class="faq-num">04</span>
+            <span class="faq-question">Can I use flavr. with dietary restrictions?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">Yes. The app supports a wide range of dietary preferences including halal, vegan, vegetarian, gluten-free, and more. You set your preferences once in your profile and every generated recipe will respect them automatically.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span class="faq-num">05</span>
+            <span class="faq-question">How is nutrition calculated?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">Nutrition is estimated by our AI using standard food composition databases as a reference. Values are accurate guides rather than clinical measurements — use them to track trends, not to the gram.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span class="faq-num">06</span>
+            <span class="faq-question">What's the refund policy on PDFs?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">Because PDF guides are digital downloads, we can't offer refunds after download. If you have a problem with your order — wrong file, corrupted download — email us at getflavr@gmail.com and we'll sort it immediately.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span class="faq-num">07</span>
+            <span class="faq-question">When is iOS / Android launching?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">The app is currently a mobile web app that works brilliantly from your phone's browser — add it to your home screen for a native-app feel. Native iOS and Android apps are on the roadmap. Subscribe to the newsletter to get early access.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <span class="faq-num">08</span>
+            <span class="faq-question">How do I become an affiliate or partner?</span>
+            <span class="faq-toggle">+</span>
+          </button>
+          <div class="faq-answer">We're building a small affiliate programme for food creators, nutritionists, and home cooks with an audience. Email us at getflavr@gmail.com with a brief intro and we'll be in touch.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">flavr.</a>
+          <p class="footer-tagline">AI-generated recipes from the ingredients you already have. Tuned to your goals, your tastes, your culture.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social" title="Instagram">📸</a>
+            <a href="#" class="footer-social" title="TikTok">🎵</a>
+            <a href="#" class="footer-social" title="Substack">✉️</a>
+          </div>
+        </div>
+
+        <!-- Product -->
+        <div>
+          <div class="footer-col-heading">Product</div>
+          <ul class="footer-links">
+            <li><a href="https://app.getflavr.com">The app</a></li>
+            <li><a href="#shop">Shop guides</a></li>
+            <li><a href="https://flavr-9927.myshopify.com/products/the-flavr-ultimate-bundle-3-cookbooks-for-everyday-cooking-health-performance?variant=57985769996675">Bundle</a></li>
+            <li><a href="#">Premium</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <div class="footer-col-heading">Company</div>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#">Test kitchen</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="mailto:getflavr@gmail.com">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <div class="footer-col-heading">Legal</div>
+          <ul class="footer-links">
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Refund policy</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 flavr. — All rights reserved.</p>
+        <p class="footer-copy">Built with care in London.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    function handleSubscribe(e) {
+      e.preventDefault();
+      const status = document.getElementById('emailStatus');
+      status.textContent = 'You\'re on the list. ✓';
+      status.style.color = '#7A8B6F';
+      document.getElementById('emailInput').value = '';
+    }
+  </script>
+
+</body>
+</html>
