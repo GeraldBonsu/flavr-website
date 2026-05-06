@@ -424,37 +424,18 @@
       aspect-ratio: 3/4;
       position: relative;
       overflow: hidden;
-      display: flex;
-      align-items: flex-end;
-      padding: 20px;
     }
 
-    .guide-cover-sienna { background: linear-gradient(145deg, #F2E0D4 0%, #D4855E 60%, #B85A38 100%); }
-    .guide-cover-sage   { background: linear-gradient(145deg, #E4EDE0 0%, #8BA87A 60%, #5C7A52 100%); }
-    .guide-cover-terra  { background: linear-gradient(145deg, #F0E6D4 0%, #C89A6A 60%, #A06840 100%); }
-
-    .guide-cover-stripe {
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        -45deg,
-        rgba(255,255,255,0.04) 0px,
-        rgba(255,255,255,0.04) 1px,
-        transparent 1px,
-        transparent 8px
-      );
+    .guide-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
     }
 
-    .guide-cover-title {
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      font-size: 20px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.95);
-      line-height: 1.15;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      position: relative;
-      z-index: 1;
+    .guide-card:hover .guide-cover img {
+      transform: scale(1.03);
     }
 
     .guide-body {
@@ -1163,9 +1144,8 @@
 
         <!-- Guide 1: High Protein -->
         <div class="guide-card">
-          <div class="guide-cover guide-cover-sienna">
-            <div class="guide-cover-stripe"></div>
-            <div class="guide-cover-title">30 High Protein Dinners</div>
+          <div class="guide-cover">
+            <img src="covers/cover_high_protein_dinners.png" alt="30 High Protein Dinners" />
           </div>
           <div class="guide-body">
             <div class="guide-meta">01 · Guide &nbsp;·&nbsp; Fitness</div>
@@ -1180,9 +1160,8 @@
 
         <!-- Guide 2: Mediterranean Reset -->
         <div class="guide-card">
-          <div class="guide-cover guide-cover-sage">
-            <div class="guide-cover-stripe"></div>
-            <div class="guide-cover-title">The Mediterranean Reset</div>
+          <div class="guide-cover">
+            <img src="covers/cover_mediterranean_reset.png" alt="The Mediterranean Reset" />
           </div>
           <div class="guide-body">
             <div class="guide-meta">02 · Guide &nbsp;·&nbsp; Health</div>
@@ -1197,9 +1176,8 @@
 
         <!-- Guide 3: Weeknight Vegan -->
         <div class="guide-card">
-          <div class="guide-cover guide-cover-terra">
-            <div class="guide-cover-stripe"></div>
-            <div class="guide-cover-title">Weeknight Vegan</div>
+          <div class="guide-cover">
+            <img src="covers/cover_weeknight_vegan.png" alt="Weeknight Vegan" />
           </div>
           <div class="guide-body">
             <div class="guide-meta">03 · Guide &nbsp;·&nbsp; Plant-based</div>
@@ -1284,7 +1262,7 @@
   <section class="email-section">
     <div class="email-inner wrap">
       <div class="email-side">
-        <div class="email-side-img"></div>
+        <img src="covers/cover_high_protein_dinners.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;" />
       </div>
 
       <div class="email-content">
@@ -1299,7 +1277,7 @@
       </div>
 
       <div class="email-side">
-        <div class="email-side-img" style="background:linear-gradient(160deg,var(--sage),var(--ink));"></div>
+        <img src="covers/cover_weeknight_vegan.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;" />
       </div>
     </div>
   </section>
