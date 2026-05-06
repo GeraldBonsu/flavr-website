@@ -1435,12 +1435,40 @@
       if (!isOpen) item.classList.add('open');
     }
 
-    function handleSubscribe(e) {
+    async function handleSubscribe(e) {
       e.preventDefault();
+      const emailInput = document.getElementById('emailInput');
       const status = document.getElementById('emailStatus');
-      status.textContent = 'You\'re on the list. ✓';
-      status.style.color = '#7A8B6F';
-      document.getElementById('emailInput').value = '';
+      const btn = e.target.querySelector('button[type="submit"]');
+
+      btn.textContent = 'Subscribing…';
+      btn.disabled = true;
+      status.textContent = '';
+      status.style.color = '';
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: emailInput.value }),
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          status.textContent = "You're on the list. ✓";
+          status.style.color = '#7A8B6F';
+          emailInput.value = '';
+        } else {
+          status.textContent = data.error || 'Something went wrong. Try again.';
+          status.style.color = '#C8633E';
+        }
+      } catch {
+        status.textContent = 'Something went wrong. Try again.';
+        status.style.color = '#C8633E';
+      } finally {
+        btn.textContent = 'Subscribe';
+        btn.disabled = false;
+      }
     }
   </script>
 
